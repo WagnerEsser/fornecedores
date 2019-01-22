@@ -1,8 +1,5 @@
 package br.com.neomind;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,14 +17,11 @@ import javax.ws.rs.core.Response;
 
 import br.com.neomind.Fornecedor;
 
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
-
 // {"id": 1, "name": "fornec lorimospm", "email": "fornec@loripsom", "comment": "loreipsum", "cnpj": "00.000/0000-00"}
 
-// localhost:8080/fornecedores/app
+// localhost:8080/fornecedores/
 
-@Path("app")
+@Path("/")
 public class FornecedoresService {
 	private static List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
 
@@ -43,8 +37,6 @@ public class FornecedoresService {
 			fornecedor1.setComment("lorem ipsum");
 			fornecedor1.setCnpj("00.000/0000-00");
 			add(fornecedor1);
-			System.out.println(fornecedor1);
-			System.out.println("Fornecedor 1 adicionado com sucesso");
 
 			Fornecedor fornecedor2 = new Fornecedor();
 			fornecedor2.setName("nome fornecedor 2");
@@ -52,7 +44,6 @@ public class FornecedoresService {
 			fornecedor2.setComment("lorem ipsum lorem ipsum");
 			fornecedor2.setCnpj("99.999/9999-99");
 			add(fornecedor2);
-			System.out.println("Fornecedor 2 adicionado com sucesso");
 		}
 
 		System.out.println("População finalizada.");
@@ -72,9 +63,8 @@ public class FornecedoresService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Fornecedor add(Fornecedor fornecedor) {
 		// cria um novo fornecedor
-		System.out.println("Cria um novo fornecedor");
-
-		Fornecedor result = null;
+		System.out.println("Criando um novo fornecedor...");
+		System.out.println(fornecedor);
 
 		if (fornecedor.getName() == null || fornecedor.getName().trim().equals("")) {
 			throw new WebApplicationException(
@@ -83,8 +73,10 @@ public class FornecedoresService {
 
 		fornecedores.add(fornecedor);
 		fornecedor.setId(fornecedores.indexOf(fornecedor) + 1);
+		
+		System.out.println("Fornecedor criado com sucesso.");
 
-		return result;
+		return fornecedor;
 	}
 	
 	@GET
@@ -95,7 +87,18 @@ public class FornecedoresService {
 		System.out.println("Retorna um fornecedor pelo ID");
 
 		Fornecedor result = null;
-		// ...
+
+		for (Fornecedor fornecedor : fornecedores) {
+			if (fornecedor.getId() == id) {
+				result = fornecedor;
+				break;
+			}
+		}
+
+		if (result == null) {
+			throw new WebApplicationException(404);
+		}
+
 		return result;
 	}
 	
@@ -111,11 +114,17 @@ public class FornecedoresService {
 
 	@DELETE
 	@Path("/{id}")
-	public void delete(@PathParam("id") int id) {
+	public String delete(@PathParam("id") int id) {
 		// remove um fornecedor
-		System.out.println("Remove um fornecedor");
+		System.out.println("Removendo um fornecedor...");
 
-		// ...
+		if (id > fornecedores.size()) {
+			throw new WebApplicationException(404);
+		}
+
+		fornecedores.remove(id - 1);
+		System.out.println("Fornecedor removido com sucesso.");
+		return "Fornecedor removido com sucesso!";
 	}
 	
 	@GET
@@ -126,13 +135,15 @@ public class FornecedoresService {
 		System.out.println("Retorna uma lista de fornecedores filtrados pelo nome");
 
 		List<Fornecedor> result = new ArrayList<Fornecedor>();
-		// ...
+		
+		for (Fornecedor fornecedor : fornecedores) {
+			if (fornecedor.getName() != null
+					&& fornecedor.getName().toLowerCase()
+							.contains(name.toLowerCase())) {
+				result.add(fornecedor);
+			}
+		}
+		
 		return result;
-	}
-
-	@GET
-	@Path("teste")
-	public void teste() {
-		System.out.println("entrei no método teste");
 	}
 }
