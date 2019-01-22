@@ -105,11 +105,18 @@ public class FornecedoresService {
 	@PUT
 	@Path("/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void update(@PathParam("id") int id, Fornecedor fornecedor) {
+	public String update(@PathParam("id") int id, Fornecedor fornecedor) {
 		// atualiza um fornecedor
 		System.out.println("Atualiza um fornecedor");
 
-		// ...
+		if (id > fornecedores.size()) {
+			throw new WebApplicationException(404);
+		}
+		
+		fornecedores.set(id - 1, fornecedor);
+		fornecedor.setId(fornecedores.indexOf(fornecedor) + 1);
+		
+		return "Fornecedor atualizado com sucesso.";
 	}
 
 	@DELETE
