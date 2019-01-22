@@ -8,15 +8,6 @@ public class Fornecedor {
 	private String email;
 	private String comment;
 	private String cnpj;
-
-	public Fornecedor(int id, String name, String email, String comment, String cnpj) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.email = email;
-		this.comment = comment;
-		this.cnpj = cnpj;
-	}
 	
 	// ---------- getters and setters ---------- //
 
