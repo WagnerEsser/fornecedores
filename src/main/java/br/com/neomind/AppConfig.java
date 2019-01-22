@@ -7,6 +7,6 @@ import javax.ws.rs.core.Application;
 public class AppConfig extends Application {
 
 	public AppConfig() {
-		System.out.println("Created AppConfig");
+		System.out.println("Criado AppConfig");
 	}
 }

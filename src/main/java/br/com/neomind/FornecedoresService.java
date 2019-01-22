@@ -53,7 +53,7 @@ public class FornecedoresService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Fornecedor> list() {
 		// retorna a lista de fornecedores
-		System.out.print("Retorna a lista de fornecedores");
+		System.out.println("Retorna a lista de fornecedores");
 
 		return fornecedores;
 	}
@@ -61,10 +61,9 @@ public class FornecedoresService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Fornecedor add(Fornecedor fornecedor) {
+	public List<Fornecedor> add(Fornecedor fornecedor) {
 		// cria um novo fornecedor
 		System.out.println("Criando um novo fornecedor...");
-		System.out.println(fornecedor);
 
 		if (fornecedor.getName() == null || fornecedor.getName().trim().equals("")) {
 			throw new WebApplicationException(
@@ -76,7 +75,7 @@ public class FornecedoresService {
 		
 		System.out.println("Fornecedor criado com sucesso.");
 
-		return fornecedor;
+		return this.list();
 	}
 	
 	@GET
