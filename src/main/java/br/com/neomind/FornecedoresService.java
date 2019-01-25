@@ -27,26 +27,26 @@ public class FornecedoresService {
 
 	public FornecedoresService() {
 		// popula a lista de fornecedores para fins de testes
-		System.out.println("Criado FornecedoresService");
-		System.out.println("Iniciando o serviço de população...");
-
-		if (fornecedores.isEmpty()) {
-			Fornecedor fornecedor1 = new Fornecedor();
-			fornecedor1.setName("nome fornecedor 1");
-			fornecedor1.setEmail("email_fornecedor1@email.com");
-			fornecedor1.setComment("lorem ipsum");
-			fornecedor1.setCnpj("00.000/0000-00");
-			add(fornecedor1);
-
-			Fornecedor fornecedor2 = new Fornecedor();
-			fornecedor2.setName("nome fornecedor 2");
-			fornecedor2.setEmail("email_fornecedor2@email.com");
-			fornecedor2.setComment("lorem ipsum lorem ipsum");
-			fornecedor2.setCnpj("99.999/9999-99");
-			add(fornecedor2);
-		}
-
-		System.out.println("População finalizada.");
+//		System.out.println("Criado FornecedoresService");
+//		System.out.println("Iniciando o serviço de população...");
+//
+//		if (fornecedores.isEmpty()) {
+//			Fornecedor fornecedor1 = new Fornecedor();
+//			fornecedor1.setName("nome fornecedor 1");
+//			fornecedor1.setEmail("email_fornecedor1@email.com");
+//			fornecedor1.setComment("lorem ipsum");
+//			fornecedor1.setCnpj("00.000/0000-00");
+//			add(fornecedor1);
+//
+//			Fornecedor fornecedor2 = new Fornecedor();
+//			fornecedor2.setName("nome fornecedor 2");
+//			fornecedor2.setEmail("email_fornecedor2@email.com");
+//			fornecedor2.setComment("lorem ipsum lorem ipsum");
+//			fornecedor2.setCnpj("99.999/9999-99");
+//			add(fornecedor2);
+//		}
+//
+//		System.out.println("População finalizada.");
 	}
 
 	@GET
