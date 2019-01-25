@@ -5,6 +5,8 @@ Desenvolvida com a IDE Eclipse.
 
 Utilizado Tomcat v7.0 Server para rodar o projeto.
 
+SPA: https://github.com/WagnerEsser/fornecedores-angularjs
+
 ## Instalação (utilizado a IDE Eclipse)
 
 1. Clone o repositório do git: https://github.com/WagnerEsser/fornecedores
